@@ -1,0 +1,216 @@
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle, #aee1f9 0%, #6dd5ed 100%);
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      margin-top: 40px;
+      font-size: 2em;
+      color: #117a8b;
+    }
+
+    .slider-container {
+      width: 700px;
+      height: 400px;
+      margin: 40px auto;
+      border-radius: 30px;
+      overflow: hidden;
+      background-color: #000;
+      position: relative;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+
+    .slider-images {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .slide {
+      width: 100%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .dot {
+      height: 14px;
+      width: 14px;
+      margin: 0 6px;
+      background-color: #ffffffaa;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+
+    .dot.active {
+      background: radial-gradient(circle, #aee1f9 0%, #6dd5ed 100%);
+      transform: scale(1.1);
+    }
+
+    .down-arrow {
+      font-size: 8em;
+      color: #117a8b;
+      margin-top: 20px;
+      animation: bounce 1.5s infinite;
+      transition: opacity 0.5s ease;
+    }
+
+    .down-arrow.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    .definisi {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+      max-width: 800px;
+      margin: 100px auto;
+      color: #114b5f;
+      font-weight: normal;
+    }
+
+    .definisi.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .komponen {
+      max-width: 1000px;
+      margin: 100px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+      padding: 0 20px;
+    }
+
+    .komponen-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+      margin-top: 30px;
+    }
+
+    .komponen-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .komponen-item img {
+      width: 300px;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      transform: translateX(-60px);
+      transition: transform 1s ease, opacity 1s ease;
+    }
+
+    .komponen-item.visible img {
+      transform: translateX(0);
+    }
+
+    .komponen-item h3 {
+      color: #114b5f;
+      text-align: left;
+      font-weight: normal;
+      flex: 1;
+      transform: translateX(60px);
+      transition: transform 1s ease, opacity 1s ease;
+    }
+
+    .komponen-item.visible h3 {
+      transform: translateX(0);
+    }
+
+    .develop h1 {
+      color: #114b5f;
+      margin-top: 100px;
+    }
+
+    .nama_p {
+      display: flex;
+      justify-content: center;
+      margin: 30px auto;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .nama_p.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .namaorang {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+      padding: 10px 20px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+      border-bottom: 5px solid;
+      border-radius: 12px;
+      background: #ffffff;
+    }
+
+    .namaorang h2 {
+      margin: 0;
+      color: #114b5f;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .namaorang a {
+      text-decoration: none;
+      color: #114b5f;
+      border: 3px solid #114b5f;
+      padding: 5px 12px;
+      font-size: 24px;
+      font-weight: bold;
+      border-radius: 40px;
+      transition: 0.3s;
+      background-color: transparent;
+    }
+
+    .namaorang a:hover {
+      background-color: #114b5f;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .komponen-item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .komponen-item img,
+      .komponen-item h3 {
+        transform: none !important;
+      }
+    }
