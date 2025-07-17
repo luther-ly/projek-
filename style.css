@@ -204,7 +204,7 @@
     }
 
   
- @media (max-width: 768px) {
+@media (max-width: 768px) {
   h1 {
     font-size: 1.5em;
     margin-top: 20px;
@@ -212,13 +212,40 @@
 
   .slider-container {
     width: 90%;
-    height: auto;
     aspect-ratio: 16 / 9;
     margin: 20px auto;
+    border-radius: 20px;
+    overflow: hidden;
   }
 
   .slide {
     font-size: 1.2em;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Sembunyikan konten bawah saat awal */
+  .definisi,
+  .komponen,
+  .develop,
+  .nama_p {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+    pointer-events: none;
+  }
+
+  .definisi.visible,
+  .komponen-item.visible,
+  .develop.visible,
+  .nama_p.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
 
   .komponen-item {
@@ -230,24 +257,32 @@
   }
 
   .komponen-item img {
-    width: 80%;
-    max-width: 300px;
+    width: 85%;
+    max-width: 240px;
+    height: auto;
+    border-radius: 16px;
     transform: none !important;
   }
 
   .komponen-item h3 {
-    font-size: 1em;
+    font-size: 0.95em;
     transform: none !important;
     padding: 0 10px;
+    text-align: center;
   }
 
   .definisi {
     margin: 60px 20px;
     font-size: 0.95em;
+    text-align: justify;
   }
 
   .down-arrow {
-    font-size: 5em;
+    font-size: 4em;
+    margin-top: 10px;
+    color: #117a8b;
+    animation: bounce 1.5s infinite;
+    transition: opacity 0.5s ease;
   }
 
   .namaorang {
