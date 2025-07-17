@@ -1,180 +1,309 @@
-/* Reset dan dasar */
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  background-color: #87CEEB;
-  color: #333;
-  overflow-x: hidden;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TwistRush</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* Judul */
-h1 {
-  text-align: center;
-  color: #0077b6;
-  margin: 20px 0;
-}
+    body {
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-/* SLIDER */
-.slider-container {
-  position: relative;
-  width: 100%;
-  max-width: 500px;
-  height: 280px;
-  margin: 0 auto;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  background: #01262f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
+    .slider-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: #f5f5f5;
+      position: relative;
+      text-align: center;
+    }
 
-.slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  width: 100%;
-  height: 100%;
-}
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
 
-.slide {
-  min-width: 100%;
-  height: 100%;
-  background-color: #01262f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .slider-container {
+      width: 80%;
+      max-width: 700px;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
 
-.slide img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
+    .slider {
+      display: flex;
+      width: 300%;
+      transition: transform 1s ease-in-out;
+    }
 
-/* DOTS */
-.dots {
-  text-align: center;
-  margin-top: 10px;
-}
+    .slide {
+      flex: 1 0 100%;
+    }
 
-.dot {
-  height: 10px;
-  width: 10px;
-  margin: 0 4px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
+    .slide img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
 
-.dot.active {
-  background-color: #0077b6;
-}
+    .dots {
+      margin-top: 10px;
+    }
 
-/* BAGIAN DEFINISI */
-#definisi {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s ease;
-  padding: 30px 20px;
-  max-width: 800px;
-  margin: 40px auto 20px auto;
-  text-align: justify;
-  line-height: 1.6;
-}
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 5px;
+      background-color: #aaa;
+      border-radius: 50%;
+      cursor: pointer;
+    }
 
-#definisi.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .dot.active {
+      background-color: #333;
+    }
 
-/* ANIMASI PANAH */
-#arrow {
-  text-align: center;
-  font-size: 32px;
-  animation: bounce 1.5s infinite;
-  margin-top: 15px;
-  color: #0077b6;
-}
+    .down-arrow {
+      font-size: 3em;
+      margin-top: 30px;
+      animation: bounce 1.5s infinite;
+    }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(8px);
-  }
-}
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(15px); }
+    }
 
-#arrow.hidden {
-  display: none;
-}
+    .hidden {
+      display: none;
+    }
 
-/* BAGIAN KOMPONEN */
-.komponen {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 40px auto;
-  max-width: 1000px;
-  gap: 20px;
-  padding: 0 20px;
-}
+    .definisi,
+    .komponen,
+    .nama_p {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+      pointer-events: none;
+    }
 
-.komponen-item {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  width: 300px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1s ease;
-}
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
 
-.komponen-item.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .definisi {
+      padding: 60px 20px;
+      font-size: 1.2em;
+      background-color: #fff;
+      text-align: center;
+    }
 
-.komponen-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
+    .komponen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 60px 20px;
+      background-color: #f0f0f0;
+    }
 
-.nama_p {
-  padding: 15px;
-  font-size: 14px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1s ease;
-}
+    .komponen-item {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      max-width: 900px;
+    }
 
-.nama_p.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .komponen-item img {
+      width: 300px;
+      max-width: 100%;
+    }
 
-/* RESPONSIF MOBILE */
-@media screen and (max-width: 768px) {
-  h1 {
-    font-size: 20px;
-  }
+    .komponen-item h3 {
+      font-size: 1.3em;
+    }
 
-  .slider-container {
-    height: 200px;
-  }
+    .nama_p {
+      text-align: center;
+      background-color: #222;
+      color: white;
+      padding: 60px 20px;
+    }
 
-  #definisi {
-    padding: 20px;
-    font-size: 14px;
-  }
+    .nama_p h2 {
+      font-size: 1.5em;
+    }
 
-  .komponen-item {
-    width: 90%;
-  }
-}
+    /* Responsif */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 1.5em;
+        margin-top: 20px;
+      }
+
+      .slider-container {
+        width: 90%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        margin: 20px auto;
+      }
+
+      .slide {
+        font-size: 1.2em;
+      }
+
+      .komponen-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+      }
+
+      .komponen-item img {
+        width: 80%;
+        max-width: 300px;
+      }
+
+      .komponen-item h3 {
+        font-size: 1em;
+        padding: 0 10px;
+      }
+
+      .definisi {
+        font-size: 1em;
+        margin: 60px 10px;
+      }
+
+      .down-arrow {
+        font-size: 2.5em;
+      }
+
+      .nama_p h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Section Slider -->
+  <section class="slider-wrapper">
+    <h1>Memperkenalkan TwistRush</h1>
+
+    <div class="slider-container">
+      <div class="slider" id="slider">
+        <div class="slide"><img src="https://via.placeholder.com/800x400/FF5733/ffffff?text=Slide+1" /></div>
+        <div class="slide"><img src="https://via.placeholder.com/800x400/33C3FF/ffffff?text=Slide+2" /></div>
+        <div class="slide"><img src="https://via.placeholder.com/800x400/75FF33/ffffff?text=Slide+3" /></div>
+      </div>
+    </div>
+
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+    <div class="down-arrow" id="arrow">&#8595;</div>
+  </section>
+
+  <!-- Section Definisi -->
+  <section class="definisi" id="definisi">
+    <p>TwistRush adalah robot inovatif yang dirancang untuk membantu dalam berbagai tugas dengan memanfaatkan sensor ultrasonik, motor DC, dan ESP32 sebagai otaknya.</p>
+  </section>
+
+  <!-- Section Komponen -->
+  <section class="komponen">
+    <div class="komponen-item">
+      <img src="https://via.placeholder.com/200x200/000000/ffffff?text=ESP32" alt="ESP32" />
+      <h3>ESP32 – Otak dari robot TwistRush</h3>
+    </div>
+    <div class="komponen-item">
+      <img src="https://via.placeholder.com/200x200/666/ffffff?text=Ultrasonik" alt="Sensor Ultrasonik" />
+      <h3>Sensor Ultrasonik – Mendeteksi rintangan</h3>
+    </div>
+    <div class="komponen-item">
+      <img src="https://via.placeholder.com/200x200/888/ffffff?text=Motor+DC" alt="Motor DC" />
+      <h3>Motor DC – Menggerakkan robot ke segala arah</h3>
+    </div>
+  </section>
+
+  <!-- Section Nama Perancang -->
+  <section class="nama_p">
+    <h2>Dirancang oleh: Udin – Otak ide dan perakit sistem</h2>
+  </section>
+
+  <!-- JavaScript -->
+  <script>
+    const slider = document.getElementById('slider');
+    const dots = document.querySelectorAll('.dot');
+    let index = 0;
+    const totalSlides = slider.children.length;
+
+    function showSlide(i) {
+      slider.style.transform = 'translateX(' + (-i * 100) + '%)';
+      dots.forEach(dot => dot.classList.remove('active'));
+      dots[i].classList.add('active');
+    }
+
+    function nextSlide() {
+      index = (index + 1) % totalSlides;
+      showSlide(index);
+    }
+
+    setInterval(nextSlide, 3500);
+
+    // Observer untuk definisi
+    const definisi = document.getElementById('definisi');
+    const arrow = document.getElementById('arrow');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          definisi.classList.add('visible');
+          arrow.classList.add('hidden');
+        }
+      });
+    });
+    observer.observe(definisi);
+
+    // Komponen
+    const komponenItems = document.querySelectorAll('.komponen-item');
+    const komponenObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          komponenObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    komponenItems.forEach(item => komponenObserver.observe(item));
+
+    // Nama perancang
+    const namaPBlocks = document.querySelectorAll('.nama_p');
+    const namaObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          namaObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    namaPBlocks.forEach(item => namaObserver.observe(item));
+  </script>
+</body>
+</html>
